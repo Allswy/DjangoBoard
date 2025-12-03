@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}通知看板{% endblock %} - MyBoardApp</title>
+
+</head>
+
+<body>
+
+    <header>
+        <h1><a href="/">AllswyBoard</a></h1>
+    </header>
+    <main>
+        {% block content %}
+            {% endblock content %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; {% now "Y" %} MyBoardApp.</p>
+    </footer>
+
+    {% block footer_extra %}{% endblock %}
+</body>
+</html>

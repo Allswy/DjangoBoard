@@ -1,0 +1,43 @@
+{% extends "share/base.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{ board.title }} - 详情
+{% endblock %}
+
+{% block content %}
+    <article class="board-detail">
+        <header>
+            {# -------------------------------------- #}
+            {# 1. 标题 (board.title) #}
+            {# -------------------------------------- #}
+            <h2>{{ board.title }}</h2>
+
+            <p class="meta-info">
+                {# 假设您的 Board Model 还有创建时间字段 created_at #}
+                发布于: {{ board.created_time|date:"Y年m月d日 H:i" }}
+            </p>
+
+            <hr>
+        </header>
+
+        {# -------------------------------------- #}
+        {# 2. 正文 (board.content) #}
+        {# -------------------------------------- #}
+        <section class="board-content">
+            {#
+               使用 safe 过滤器：如果您确定 Board.content 是经过安全处理（例如由Markdown渲染器处理）的HTML，
+               或者您希望保留其中的换行符，可以使用 |safe 过滤器。
+               如果内容是纯文本，不加 safe 更安全。
+            #}
+            <p>
+                {{ board.content|linebreaks }}
+            </p>
+        </section>
+
+        <footer>
+            <a href="{% url 'board:index' %}">返回列表</a>
+        </footer>
+    </article>
+{% endblock content %}

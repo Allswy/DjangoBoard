@@ -11,4 +11,7 @@ class Board(models.Model):
     def __str__(self):
         return self.title
 
-    def get 
+    def get_queryset(self):
+        return Board.objects.all()
+
+

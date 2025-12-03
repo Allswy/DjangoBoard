@@ -1,0 +1,45 @@
+{% extends "share/base.html" %} 
+
+{% load static %}
+
+{% block title %}
+    发布新通知 - MyBoardApp
+{% endblock %}
+
+{% block content %}
+    <article class="board-form-container">
+        <h1>发布新通知</h1>
+        <hr>
+
+        {# -------------------------------------------------------------------- #}
+        {# 表单：action 为空表示提交到当前 URL (由 CreateView 处理) #}
+        {# -------------------------------------------------------------------- #}
+        <form method="post" action="">
+            {% csrf_token %} {# Django 表单必须包含 CSRF 令牌 #}
+
+            {# -------------------------------------------------------------------- #}
+            {# 1. 显示非字段错误 #}
+            {# -------------------------------------------------------------------- #}
+            {% if form.non_field_errors %}
+                <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {# -------------------------------------------------------------------- #}
+            {# 2. 使用 as_p 渲染表单字段（快速简洁） #}
+            {# -------------------------------------------------------------------- #}
+            {{ form.as_p }}
+
+            {# -------------------------------------------------------------------- #}
+            {# 3. 提交按钮 #}
+            {# -------------------------------------------------------------------- #}
+            <div class="form-actions">
+                <button type="submit">发布</button>
+                <a href="{% url 'board:index' %}">取消并返回</a>
+            </div>
+        </form>
+    </article>
+{% endblock content %}
